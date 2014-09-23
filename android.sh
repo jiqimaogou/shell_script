@@ -22,7 +22,8 @@ else
     source ~/.bash_profile
 fi
 # PATH=~/bin:$PATH
-curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+cp repo ~/bin/repo
+# curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 cd /Volumes/android 
 mkdir android 
