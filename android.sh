@@ -15,7 +15,7 @@ else
     source ~/.bash_profile
 fi
 # PATH=~/bin:$PATH
-curl -x web-proxy.oa.com:8080 http://git-repo.googlecode.com/files/repo-1.12 > ~/bin/repo
+curl -x web-proxy.oa.com:8080 http://php.webtutor.pl/en/wp-content/uploads/2011/09/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 cd /Volumes/android 
 mkdir android 
