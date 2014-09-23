@@ -1,9 +1,16 @@
 export HTTP_PROXY=http://web-proxy.oa.com:8080
 export HTTPS_PROXY=http://web-proxy.oa.com:8080
-if [ ! -f "~/android.dmg" ]; then
-    function mountAndroid { hdiutil attach ~/android.dmg -mountpoint /Volumes/android; } 
+function mountAndroid { hdiutil attach ~/android.dmg -mountpoint /Volumes/android; } 
+if [ -f "~/android.dmg" ]; then
+    echo "Found"
+    # echo 'PATH=$PATH:~/' >> ~/.bashrc
+    # source ~/.bashrc
+else
+    # echo 'PATH=$PATH:~/' >> ~/.bash_profile
+    # source ~/.bash_profile
     sudo hdiutil create -size 50g -type UDIF -fs HFSX -volname android ~/android.dmg 
     sudo chown $USER ~/android.dmg 
+    # command to mount the android file image 
     mountAndroid
 fi
 mkdir ~/bin
@@ -15,7 +22,7 @@ else
     source ~/.bash_profile
 fi
 # PATH=~/bin:$PATH
-curl -x web-proxy.oa.com:8080 http://php.webtutor.pl/en/wp-content/uploads/2011/09/repo > ~/bin/repo
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 cd /Volumes/android 
 mkdir android 
