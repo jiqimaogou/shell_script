@@ -1,15 +1,9 @@
 export HTTP_PROXY=http://web-proxy.oa.com:8080
 export HTTPS_PROXY=http://web-proxy.oa.com:8080
-if [ -f "~/android.dmg" ]; then
-    # echo 'PATH=$PATH:~/' >> ~/.bashrc
-    # source ~/.bashrc
-else
-    # echo 'PATH=$PATH:~/' >> ~/.bash_profile
-    # source ~/.bash_profile
+if [ ! -f "~/android.dmg" ]; then
+    function mountAndroid { hdiutil attach ~/android.dmg -mountpoint /Volumes/android; } 
     sudo hdiutil create -size 50g -type UDIF -fs HFSX -volname android ~/android.dmg 
     sudo chown $USER ~/android.dmg 
-    # command to mount the android file image 
-    function mountAndroid { hdiutil attach ~/android.dmg -mountpoint /Volumes/android; } 
     mountAndroid
 fi
 mkdir ~/bin
@@ -21,7 +15,7 @@ else
     source ~/.bash_profile
 fi
 # PATH=~/bin:$PATH
-curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+curl -x web-proxy.oa.com:8080 http://git-repo.googlecode.com/files/repo-1.12 > ~/bin/repo
 chmod a+x ~/bin/repo
 cd /Volumes/android 
 mkdir android 
